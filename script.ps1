@@ -1,0 +1,12 @@
+#return me access token from my manages identity
+
+$params = @{
+Uri = "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fmanagement.azure.com%2F"  
+Header = @{Metadata = "true"}
+}
+$content = Invoke-WebRequest @params
+Write-Output $content
+
+#networking should be preconfigured, managed identity is only for local usage on a resource !!!
+#npr ja sam mu deo VM Admin i on se meni ulogovao kao admin user na toj masini adminuser
+#see how to attach MI to a resource group
