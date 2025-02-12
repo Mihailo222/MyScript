@@ -24,3 +24,21 @@ Write-Output $content
    - name: "Stop service XSP.Common.CompositeRunner"
      ansible.windows.win_command: powershell.exe Stop-Process -Name cmd
      when: output.rc == 0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+- hosts: winhosts
+  tasks:
+     #   - name: "Stop service XSP.Common.CompositeRunner"
+     #ansible.windows.win_command: powershell.exe Stop-Process -Name XSP.Common.CompositeRunner
+     #when: output.rc == 0i
+   - name: Check...
+     ansible.windows.win_powershell:
+       script: |
+         if((Get-Process "XSP.Common" -ea SilentlyContinue) -eq $Null){
+          echo "Process XSP.Common not running."
+          } else {
+              Stop-Process -Name "XSP.Common"
+          }
+
+     register: output
+       #- debug: msg = {{ output }}
