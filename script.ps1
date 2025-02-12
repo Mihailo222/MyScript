@@ -10,3 +10,17 @@ Write-Output $content
 #networking should be preconfigured, managed identity is only for local usage on a resource !!!
 #npr ja sam mu deo VM Admin i on se meni ulogovao kao admin user na toj masini adminuser
 #see how to attach MI to a resource group
+#######################################################################################################################################
+
+- hosts: winhosts
+  tasks:
+   - name: "Check if service exists."
+     ansible.windows.win_command: powershell.exe Get-Process -Name cmd -ErrorAction Ignore #bez .exe
+     register: output
+     ignore_errors: true
+
+   - debug: msg={{ output.rc }} #return code
+
+   - name: "Stop service XSP.Common.CompositeRunner"
+     ansible.windows.win_command: powershell.exe Stop-Process -Name cmd
+     when: output.rc == 0
