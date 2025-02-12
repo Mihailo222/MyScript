@@ -42,3 +42,4 @@ Write-Output $content
 
      register: output
        #- debug: msg = {{ output }}
+https://stackoverflow.com/questions/28481811/how-to-correctly-check-if-a-process-is-running-and-stop-it
