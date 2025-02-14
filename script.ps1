@@ -43,3 +43,45 @@ Write-Output $content
      register: output
        #- debug: msg = {{ output }}
 https://stackoverflow.com/questions/28481811/how-to-correctly-check-if-a-process-is-running-and-stop-it
+#########################################################################################################
+
+#arrays
+
+Set-StrictMode -Version latest
+
+$myArray=@() #empty array
+$myArrayTwo = @("test1","test2")
+
+$myArray.GetType()
+$myArray.IsFixedSize #cant add new elements
+
+$myArrayTwo.Count
+
+$myArray[1] #index out of bounds with strict mode latest version
+$myArrayTwo[1]
+
+#add an element to an array
+#$myArray.Add("test4")
+$myArray=$myArray+"test4"
+$myArray.Count
+
+#remove an element from an array
+$myArray.RemoveAt(0)
+$myArray=$myArray -ne "test4" #reinitialize
+
+# ARRAY LISTS
+
+#cast array to array list
+$myArrayList=[System.Collections.ArrayList]@()
+$myListTwo=New-Object -TypeName System.Collections.ArrayList
+
+$myArrayList.GetType()
+$myListTwo.GetType()
+
+$myArrayList.Add("test1")
+[void]$myArrayList.Add("test2")
+
+$myArrayList.AddRange(@("test3","test4","test5"))
+$myArrayList.Remove("test2") #removes first instance of item
+$myArrayList.RemoveAt(0)
+$myArrayList.RemoveRange(0,2)
