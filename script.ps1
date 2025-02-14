@@ -175,3 +175,19 @@ $myArrayList.AddRange(@("test3","test4","test5"))
 $myArrayList.Remove("test2") #removes first instance of item
 $myArrayList.RemoveAt(0)
 $myArrayList.RemoveRange(0,2)
+########################################################################################################
+
+Where-Object => WHERE
+Select-Object => SELECT
+
+
+
+
+
+
+
+
+
+
+
+
