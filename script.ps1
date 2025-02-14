@@ -45,6 +45,96 @@ Write-Output $content
 https://stackoverflow.com/questions/28481811/how-to-correctly-check-if-a-process-is-running-and-stop-it
 #########################################################################################################
 
+#Video 1
+#-------
+
+Get-Date
+Get-Service
+#Set-Service
+
+#help: Get-Command + Get-Help
+
+Get-Command #list all the commands loaded in PowerShell session
+Get-Command -noun service #all cmdlets with service in noun
+Get-Help Get-Service -Full
+
+Get-Service
+Get-Alias
+
+#primeri alijasa
+#? = Where-Object
+#% = ForEach-Object
+# ...
+
+#Paramethers: WhatIf and Confirm
+# cd C:\ = Set-Location -Path C:\...
+# .\test.ps1
+
+
+#setovanje execution policy-ja -> administrativne privilegije
+
+Get-ExecutionPolicy
+#RemoteSigned -> run code only written by trusted scripter -> sertifikat u skripti sajnovan od strane trusted source-a
+# ne moze se preuzimati skripta sa neta onda
+Set-ExecutionPolicy -ExecutionPolicy ____________
+# Restricted = ne pusta nikad da izvrsis script, Unrestricted = dozvoljava ti da runnujes sta hoces
+#mozes skriptu staviti i samo nekim userima da je izvrsavaju
+
+#Confirm -> ako izvrsavas cmdlet i hoces da ti promptuje 
+#npr. brisanje usera u AD-u
+# -Confirm:$False OR -Confirm:$True
+
+
+#Video 2
+#-------
+
+$myVariable="JackedProgrammer" #local session variable
+$myVariable
+
+$myString="12"
+$myStr='12'
+
+#methods and properties
+$myString.Length
+$myString.GetType() #BaseTpye = System.Object -> Object Type: String
+$myInt.GetType() #Value, Int
+
+$myVal1=1
+$myVal2=5
+$myVal10=10
+
+$myRes=$myVal1+$myVal10
+# +,-,*,/,%
+#true
+
+#-eq, -ne
+#not == or ===
+
+
+Set-StrictMode -Version latest #stavis gore da bi sve var. koje koristis MORALE DA BUDU DEKLARISANE I DEFINISANE PRE NEGO STO IH REFERENCIRAS
+
+$null
+
+#casting
+$myVal123=1.2 #double
+[int]$myVal123=1.2 #int
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################################################
 #arrays
 
 Set-StrictMode -Version latest
