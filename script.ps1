@@ -142,6 +142,7 @@ Set-StrictMode -Version latest
 $myArray=@() #empty array
 $myArrayTwo = @("test1","test2")
 
+
 $myArray.GetType()
 $myArray.IsFixedSize #cant add new elements
 
@@ -180,8 +181,18 @@ $myArrayList.RemoveRange(0,2)
 Where-Object => WHERE
 Select-Object => SELECT
 
+https://shellgeek.com/stop-process-in-powershell/
 
+#Pid = 3356 => Get-Process | Select-Object Id
 
+$myProcess = Get-Process -Id 3356
+
+$myProcess.CloseMainWindow()
+
+if($myProcess.HasExited) {
+  Write-Host "Waiting for exit of Pid=$($myProcess.Id)"
+  $myProcess.WaitForExit()
+}
 
 
 
