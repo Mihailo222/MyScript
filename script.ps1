@@ -194,6 +194,28 @@ if($myProcess.HasExited) {
   $myProcess.WaitForExit()
 }
 
+############################### POWERSHELL REMOTING ######################################################
+
+$Creds=Get-Credential
+
+$session = New-PSSession -ComputerName 52.149.208.44 -Credential $Creds
+
+Invoke-Command -Session $session -ScriptBlock {
+    Write-Host $ConfirmPreference
+    $ConfirmPreference = "None"
+    echo "CP AFTER: $($ConfirmPreference)"
+    $process = Get-Process -Name cmd -IncludeUserName | Where-Object UserName -eq "MYNEWDOMAINMIHA\adminuser"
+    Stop-Process -Id $process.Id 
+}
+
+<#Invoke-Command -ComputerName "52.149.208.44" -Credential $Creds -ScriptBlock {
+ Write-Host $ConfirmPreference
+ $ConfirmPreference = "None"
+ echo $ConfirmPreference
+ $process = Get-Process -Name cmd -IncludeUserName | Where-Object UserName -eq "MYNEWDOMAINMIHA\adminuser"
+ Stop-Process -Id $process.Id -Confirm:$false
+}
+#>
 
 
 
